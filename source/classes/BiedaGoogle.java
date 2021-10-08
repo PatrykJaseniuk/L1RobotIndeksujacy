@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Collection;
+
 import interfaces.InterfaceBiedaGoogle;
 import interfaces.InterfaceSearchDataBase;
 import interfaces.InterfaceWebCrowlerIndex;
@@ -8,9 +10,9 @@ public class BiedaGoogle implements InterfaceBiedaGoogle
 {
 
     @Override
-    public void indexPage(String url)
+    public Collection<String> indexPage(String url)
     {
-       interfaceWebCrowlerIndex.index(url);       
+       return interfaceWebCrowlerIndex.index(url);       
     }
 
     @Override
@@ -21,7 +23,7 @@ public class BiedaGoogle implements InterfaceBiedaGoogle
     }
 
     @Override
-    public String[] search(String[] keyWords)
+    public Collection<String> search(String keyWords)
     {        
         return interfaceSearchDataBase.search(keyWords);
     }

@@ -12,4 +12,4 @@ W komponencie poniżej prezentować listę niepowtarzalnych linków.
 - Użycie wybranej kolekcji
 
 # wykonanie:
-- parsing strony internetowej z wykożystaniem biblioteki jsoup https://jsoup.org/
+- parsing strony internetowej z wykorzystaniem biblioteki jsoup https://jsoup.org/

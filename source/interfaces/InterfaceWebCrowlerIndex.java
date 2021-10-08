@@ -1,6 +1,8 @@
 package interfaces;
 
+import java.util.Collection;
+
 public interface InterfaceWebCrowlerIndex
 {
-    void index(String url);
+    Collection<String> index(String url);
 }

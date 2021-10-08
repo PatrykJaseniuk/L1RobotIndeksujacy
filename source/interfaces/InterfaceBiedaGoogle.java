@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.util.Collection;
+
 /**
  * interface do obslugi wyszukiwarki
  */
@@ -9,8 +11,10 @@ public interface InterfaceBiedaGoogle
      * rozpoczyna proces indeksowania wybranej striony i jej podstron
      * @param url 
      * url storny do zindeksowania
+     * @return
+     * zwraca kolekcje zindeksowanych stron 
      */
-    void indexPage(String url);
+    Collection<String> indexPage(String url);
     /**
      * wysyla aktualny status procesu indeksowania
      * @return
@@ -24,5 +28,5 @@ public interface InterfaceBiedaGoogle
      * @return
      * tablica z URL stron gdzie wystepuje podane haslo
      */
-    String[] search(String[] keyWords);
+    Collection<String> search(String keyWords);
 }

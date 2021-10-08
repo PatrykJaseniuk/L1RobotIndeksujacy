@@ -1,6 +1,8 @@
 package interfaces;
 
+import java.util.Collection;
+
 public interface InterfaceSearchDataBase
 {
-    String[] search(String[] KeyWords);
+    Collection<String> search(String KeyWords);
 }

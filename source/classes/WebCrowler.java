@@ -1,10 +1,7 @@
 package classes;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,16 +26,17 @@ public class WebCrowler implements InterfaceWebCrowlerIndex
     }
 
     @Override
-    public void index(String url)
+    public Collection<String> index(String url)
     {
+        startUrl=url;
         indexPage(url);
+        return visitedUrls;
     }
 
     void indexPage(String url)
     {
         System.out.println("\nindexing url:"+ url);
-        //dodanie url do odwiedzonych
-        visitedUrls.add(url);
+        
         // uzyskanie z url drzewa skladniowego (syntactic tree)
         Document doc;
         try
@@ -47,9 +45,11 @@ public class WebCrowler implements InterfaceWebCrowlerIndex
         } catch (Exception e)
         {
             System.out.println("nie można otwozyc strony: " + url);
-            return;
+            return ;
         }
-
+        //dodanie url do odwiedzonych
+        visitedUrls.add(url);
+        
         // z dokumentu uzyskanie listy slow
         String text = doc.body().text();
 
@@ -68,7 +68,7 @@ public class WebCrowler implements InterfaceWebCrowlerIndex
         for (Element element : links)
         {
             String urlToCheck = element.attr("abs:href");
-            Pattern paternUrl = Pattern.compile(url);
+            Pattern paternUrl = Pattern.compile(startUrl);
             Matcher matcher = paternUrl.matcher(urlToCheck);
             
             if (matcher.find() & !visitedUrls.contains(urlToCheck))

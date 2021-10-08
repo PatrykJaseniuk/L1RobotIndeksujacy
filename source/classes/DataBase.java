@@ -1,22 +1,63 @@
 package classes;
 
 import interfaces.InterfaceWebCrowlerDataBase;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.regex.Pattern;
+
 import interfaces.InterfaceSearchDataBase;
 
 public class DataBase implements InterfaceWebCrowlerDataBase, InterfaceSearchDataBase
 {
+    Map<String, Set<String>> keyWordUrlMap = new HashMap<String, Set<String>>();
 
     @Override
     public void push(String keyWord, String url)
     {
-        System.out.println("addnig url: "+ url+ " under index: " + keyWord);        
+        System.out.println("addnig url: " + url + " under index: " + keyWord);
+        Set<String> urlSet;
+        if ((urlSet = keyWordUrlMap.get(keyWord)) != null)
+        {
+            urlSet.add(url);
+        } else
+        {
+            Set<String> newUrlSet = new HashSet<String>();
+            newUrlSet.add(url);
+            keyWordUrlMap.put(keyWord, newUrlSet);
+        }
     }
 
+
     @Override
-    public String[] search(String[] KeyWords)
+    public Collection<String> search(String keyWordsString)
     {
-        System.out.println("wyszukuje adresow url zawierajacych: "+ KeyWords);
-        return new String[]{"adres url 1", "adres url 2"};
+        Set<String> urlSet = new HashSet<String>();
+
+        Pattern patern = Pattern.compile("\\W+");
+        String keyWords[] = patern.split(keyWordsString);
+
+        if(keyWords.length>0)
+        {
+            urlSet =keyWordUrlMap.get(keyWords[0]);
+        }        
+
+        for (String keyWord : keyWords)
+        {
+            Set<String> localUrlSet;
+            if((localUrlSet =keyWordUrlMap.get(keyWord))!=null)
+            {
+                urlSet.retainAll(localUrlSet);
+            }            
+        }        
+
+      return urlSet;
+        
     }
 
     @Override
@@ -25,5 +66,5 @@ public class DataBase implements InterfaceWebCrowlerDataBase, InterfaceSearchDat
         // TODO Auto-generated method stub
         return false;
     }
-    
+
 }
