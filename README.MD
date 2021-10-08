@@ -10,3 +10,6 @@ W komponencie poniżej prezentować listę niepowtarzalnych linków.
 - Kod ma być obiektowy
 - Wielowątkowość
 - Użycie wybranej kolekcji
+
+# wykonanie:
+- parsing strony internetowej z wykożystaniem biblioteki jsoup https://jsoup.org/
