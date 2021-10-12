@@ -51,7 +51,7 @@ public class BiedaGui
             wyszukajSlowKluczowychIWyswietlUrlStornNaKtorychSieZnajduja(zapytajOSlowaKluczowe());
             // if (!zapytajCzyDalejWyszukiwac())
             // {
-            //     break;
+            // break;
             // }
         }
     }
@@ -66,7 +66,7 @@ public class BiedaGui
     {
         Collection<String> stronyZeSlowamiKluczowymi = biedaGogle.search(slowaKluczowe);
 
-        if (stronyZeSlowamiKluczowymi==null)
+        if (stronyZeSlowamiKluczowymi == null)
         {
             System.out.println("nie znaleziono slow");
         } else

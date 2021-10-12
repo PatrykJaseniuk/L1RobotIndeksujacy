@@ -33,7 +33,6 @@ public class DataBase implements InterfaceWebCrowlerDataBase, InterfaceSearchDat
         }
     }
 
-
     @Override
     public Collection<String> search(String keyWordsString)
     {
@@ -42,22 +41,26 @@ public class DataBase implements InterfaceWebCrowlerDataBase, InterfaceSearchDat
         Pattern patern = Pattern.compile("\\W+");
         String keyWords[] = patern.split(keyWordsString);
 
-        if(keyWords.length>0)
+        if (keyWords.length > 0)
         {
-            urlSet =keyWordUrlMap.get(keyWords[0]);
-        }        
+            urlSet = keyWordUrlMap.get(keyWords[0]);
+        }
 
         for (String keyWord : keyWords)
         {
             Set<String> localUrlSet;
-            if((localUrlSet =keyWordUrlMap.get(keyWord))!=null)
+            if ((localUrlSet = keyWordUrlMap.get(keyWord)) != null)
             {
-                urlSet.retainAll(localUrlSet);
-            }            
-        }        
+                try {
+                    urlSet.retainAll(localUrlSet);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }                
+            }
+        }
 
-      return urlSet;
-        
+        return urlSet;
+
     }
 
     @Override
