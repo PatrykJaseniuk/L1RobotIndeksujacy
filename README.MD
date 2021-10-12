@@ -1,4 +1,4 @@
-# Zawansowane Programowanie W Java'ie
+# Zawansowane Programowanie W Javie
 ***
 Kolejne laboratoria są oznaczone jako tagi w repozytorium.
 
@@ -6,7 +6,7 @@ Kolejne laboratoria są oznaczone jako tagi w repozytorium.
 ## Laboratoria
 
  1. [L1 Robot Indeksujacy](#l1-robot-indeksujacy)
- 2. [L2]()
+ 2. [L2](#l2)
  3. [L3](#l3)
 
  ***
