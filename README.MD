@@ -5,11 +5,12 @@ Kolejne laboratoria są oznaczone jako tagi w repozytorium.
 
 ## Laboratoria
 
- 1. [Robot Indeksujący]()
+ 1. [Robot Indeksujący](#robot-indeksujacy)
  2. 
 
-## Robot Indeksujący
-***
+ ***
+
+## L1 Robot Indeksujący
 ### Zadanie:
 - opracowac GUI
 - Użytkownik wprowadza adres URL strony od ktorej ma się zacząć zbieranie linków.
@@ -23,3 +24,16 @@ W komponencie poniżej prezentować listę niepowtarzalnych linków.
 
 ### wykonanie:
 - parsing strony internetowej z wykorzystaniem biblioteki jsoup https://jsoup.org/
+
+***
+
+## L2 
+
+***
+
+## L3
+
+***
+
+
+
