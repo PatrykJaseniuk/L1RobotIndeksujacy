@@ -5,8 +5,9 @@ Kolejne laboratoria są oznaczone jako tagi w repozytorium.
 
 ## Laboratoria
 
- 1. [Robot Indeksujący](#robot-indeksujacy)
- 2. 
+ 1. [L1 Robot Indeksujący](#l1-robot-indeksujacy)
+ 2. [L2]
+ 3. [L3]
 
  ***
 
