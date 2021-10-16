@@ -6,7 +6,7 @@ W celu kompilacji i uruchomienia nalezy wskazac sciezke do modulow javafx i dola
 Oto komendy ktore tego dokonuja:
 
 kompilacja:
-'javac --module-path <sciezka do folderu z plikami .jar> --add-modules javafx.controls,javafx.fxml <nazwa pliku.java>'
+"javac --module-path <sciezka do folderu z plikami .jar> --add-modules javafx.controls,javafx.fxml <nazwa pliku.java>"
 
 uruchamianie:
 'java --module-path <sciezka do folderu z plikami .jar> --add-modules javafx.controls,javafx.fxml <nazwa pliku>'
