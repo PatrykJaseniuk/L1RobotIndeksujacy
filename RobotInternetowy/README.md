@@ -14,9 +14,6 @@ uruchamianie:
 `java --module-path <sciezka do folderu z plikami .jar> --add-modules javafx.controls,javafx.fxml <nazwa pliku>`
 
 W celu skonfigurowanie VS Codium do pracy z javaFX nalezy do pliku launch.json dodac konfiguracje:
-<<<<<<< HEAD
 '"vmArgs": "--module-path <sciezka do folderu z modulami javaFX> --add-modules javafx.controls,javafx.fxml"'
-=======
 
 `"vmArgs": "java --module-path <sciezka do folderu z modulami javaFX> --add-modules javafx.controls,javafx.fxml"`
->>>>>>> 1185582d4fdba0921e4f2e4959a4714ecd17e4dc
