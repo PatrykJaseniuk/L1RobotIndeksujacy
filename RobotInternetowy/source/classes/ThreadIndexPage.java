@@ -3,6 +3,9 @@ package classes;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,64 +17,78 @@ import org.jsoup.select.Elements;
 import interfaces.InterfaceWebCrowlerDataBase;
 
 /**
- * Klasa indeksujaca streone i podstrony wielowatkowo.
- * Przed uzyciem nalezy wywolac statyczna metode 'setData'.
- * Aby rozpoczac indeksowanie wywolaj statyczna metode startIndexing * 
+ * Klasa indeksujaca streone i podstrony wielowatkowo. Przed uzyciem nalezy
+ * wywolac statyczna metode 'setData'. Aby rozpoczac indeksowanie wywolaj
+ * statyczna metode startIndexing *
  */
 public class ThreadIndexPage extends Thread
 {
+
 	static String startUrl;
 	static InterfaceWebCrowlerDataBase interfaceDataBase;
-	static Set<String> visitedUrls = new HashSet<String>();
-	static int quantityOfThreads;
-	static int threadNumber =0;
+	static Set<String> visitedUrls = new UrlHashSet();
+	static int maxQuantityOfThreads;
+	static int actualQuantityOfThreads = 0;
 
 	private String url;
-	private int nr;
 
 	/**
 	 * Statyczna metoda inicjalizujaca niezbedne dane
+	 * 
 	 * @param startUrl url rozpoczecia indeksowania
-	 * @param interfaceDataBase interface do bazydanyc gdzie beda zapisywane indeksy
-	 * @param quantityOfThreads maksymalna liczba watkow
+	 * @param interfaceDataBase interface do bazydanyc gdzie beda zapisywane
+	 * indeksy
+	 * @param maxQuantityOfThreads maksymalna liczba watkow
 	 * @param visitedUrls referencja na kolekcje odwiedzonych stron
 	 */
 	static Collection<String> setData(String startUrl, InterfaceWebCrowlerDataBase interfaceDataBase,
-			int quantityOfThreads)
+			int maxQuantityOfThreads)
 	{
 		ThreadIndexPage.startUrl = startUrl;
-		ThreadIndexPage.interfaceDataBase = interfaceDataBase;	
-		ThreadIndexPage.quantityOfThreads = quantityOfThreads;
+		ThreadIndexPage.interfaceDataBase = interfaceDataBase;
+		ThreadIndexPage.maxQuantityOfThreads = maxQuantityOfThreads;
 		return ThreadIndexPage.visitedUrls;
 	}
 
 	public static void startIndexing()
 	{
-		if(startUrl==null || interfaceDataBase ==null)
+		if (startUrl == null || interfaceDataBase == null)
 		{
-			System.out.println("nie wywolano funkcji set Data");		
+			System.out.println("nie wywolano funkcji set Data");
 		}
 		else
 		{
 			new ThreadIndexPage(startUrl);
-		}		
-	}
-	
-	private ThreadIndexPage(String url)
-	{
-		quantityOfThreads--;
-		nr = threadNumber++;
-		this.url = url;
-		start();
-		quantityOfThreads++;
-		threadNumber--;
+
+			while (true)
+			{
+				if (actualQuantityOfThreads == 0)
+				{
+					break;
+				}
+				try
+				{
+					sleep(5000);
+				} catch (Exception e)
+				{
+					// TODO: handle exception
+				}
+			}
+			System.out.println("strony zindeksowane");
+		}
 	}
 
-	
+	private ThreadIndexPage(String url)
+	{
+		actualQuantityOfThreads++;
+		System.out.println("liczba aktywnych watkow: " + actualQuantityOfThreads);
+		this.url = url;
+		start();
+	}
 
 	void indexPage(String url)
 	{
-		System.out.println("\nindexing url:" + url+ "przez watek nr: "+ nr);
+		System.out.println("\nindexing url:" + url);
 
 		// uzyskanie z url drzewa skladniowego (syntactic tree)
 		Document doc;
@@ -83,8 +100,6 @@ public class ThreadIndexPage extends Thread
 			System.out.println("nie można otwozyc strony: " + url);
 			return;
 		}
-		// dodanie url do odwiedzonych
-		visitedUrls.add(url);
 
 		// z dokumentu uzyskanie listy slow
 		String text = doc.body().text();
@@ -108,10 +123,13 @@ public class ThreadIndexPage extends Thread
 
 			if (matcher.find() & !visitedUrls.contains(urlToCheck))
 			{
-				if (quantityOfThreads > 0)
+				// dodanie url do odwiedzonych
+				visitedUrls.add(url);
+				if (maxQuantityOfThreads > actualQuantityOfThreads)
 				{
 					new ThreadIndexPage(urlToCheck);
-				} else
+				}
+				else
 				{
 					indexPage(urlToCheck);
 				}
@@ -121,7 +139,8 @@ public class ThreadIndexPage extends Thread
 	}
 
 	public void run()
-	{		
+	{
 		indexPage(url);
+		actualQuantityOfThreads--;
 	}
 }

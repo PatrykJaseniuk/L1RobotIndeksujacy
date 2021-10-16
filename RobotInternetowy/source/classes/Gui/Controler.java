@@ -3,11 +3,15 @@ package classes.Gui;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 
 import java.util.Collection;
 
 import classes.BiedaGoogle;
 import interfaces.InterfaceBiedaGoogle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,29 +26,31 @@ public class Controler
 	private Button buttonIndeksuj;
 
 	@FXML
-	private TextArea textAreaWynikiWyszukiwania;
-
-	@FXML
-	private TextArea textAreaZindeksowaneStrony;
-
-	@FXML
 	private TextField textFieldIndekuj;
 
 	@FXML
 	private TextField textFieldSzukaj;
 
 	@FXML
+    private ListView<String> listViewWynikWyszukiwania;
+
+    @FXML
+    private ListView<String> listViewZindeksowaneStrony;
+
+	@FXML
 	void buttonIndeksujClicked(ActionEvent event)
 	{
 		System.out.println("dzial indekuj");
 		Collection<String> zindeksowaneStorny = biedaGogle.indexPage(textFieldIndekuj.getText());
-		textAreaZindeksowaneStrony.setText(zindeksowaneStorny.toString());
+		listViewZindeksowaneStrony.setItems(FXCollections.observableArrayList(zindeksowaneStorny));
 	}
 
 	@FXML
 	void buttonSzukajClicked(ActionEvent event)
 	{
 		System.out.println("dzial szukaj");
+		Collection<String> wynikWyszukiwania = biedaGogle.search(textFieldSzukaj.getText());
+		listViewWynikWyszukiwania.setItems(FXCollections.observableArrayList(wynikWyszukiwania));
 	}
 
 }

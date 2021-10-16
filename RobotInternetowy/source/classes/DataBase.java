@@ -20,7 +20,7 @@ public class DataBase implements InterfaceWebCrowlerDataBase, InterfaceSearchDat
     @Override
     public void push(String keyWord, String url)
     {
-        System.out.println("addnig url: " + url + " under index: " + keyWord);
+        //System.out.println("addnig url: " + url + " under index: " + keyWord);
         Set<String> urlSet;
         if ((urlSet = keyWordUrlMap.get(keyWord)) != null)
         {
