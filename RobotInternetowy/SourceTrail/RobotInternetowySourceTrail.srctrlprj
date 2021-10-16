@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config>
+    <source_groups>
+        <source_group_51070935-a74a-43f4-b523-eaf08dc27d97>
+            <java_standard>11</java_standard>
+            <name>Java Source Group</name>
+            <source_extensions>
+                <source_extension>.java</source_extension>
+            </source_extensions>
+            <source_paths>
+                <source_path>Gui</source_path>
+                <source_path>lib</source_path>
+                <source_path>source</source_path>
+                <source_path>/usr/lib/jvm</source_path>
+            </source_paths>
+            <status>enabled</status>
+            <type>Java Source Group</type>
+            <use_jre_system_library>1</use_jre_system_library>
+        </source_group_51070935-a74a-43f4-b523-eaf08dc27d97>
+    </source_groups>
+    <version>8</version>
+</config>

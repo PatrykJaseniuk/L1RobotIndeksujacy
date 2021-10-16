@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
 
 public class Controler
 {
-	InterfaceBiedaGoogle biedaGogle = new BiedaGoogle();
+	private InterfaceBiedaGoogle biedaGogle = new BiedaGoogle();
 
 	@FXML
 	private Button buttonIndeksuj;
