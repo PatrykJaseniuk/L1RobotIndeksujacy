@@ -43,6 +43,7 @@ public class Controler
 		System.out.println("dzial indekuj");
 		Collection<String> zindeksowaneStorny = biedaGogle.indexPage(textFieldIndekuj.getText());
 		listViewZindeksowaneStrony.setItems(FXCollections.observableArrayList(zindeksowaneStorny));
+		System.out.println(zindeksowaneStorny.toString());
 	}
 
 	@FXML
@@ -51,6 +52,7 @@ public class Controler
 		System.out.println("dzial szukaj");
 		Collection<String> wynikWyszukiwania = biedaGogle.search(textFieldSzukaj.getText());
 		listViewWynikWyszukiwania.setItems(FXCollections.observableArrayList(wynikWyszukiwania));
+		System.out.println(wynikWyszukiwania.toString());
 	}
 
 }
