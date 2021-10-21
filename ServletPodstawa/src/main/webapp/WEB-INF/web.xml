@@ -8,9 +8,17 @@
             <param-value>5</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>Formularz</servlet-name>
+        <servlet-class>com.mycompany.servletpodstawa.Formularz</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TabliczaMnozenia</servlet-name>
         <url-pattern>/TabliczaMnozenia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Formularz</servlet-name>
+        <url-pattern>/Formularz</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

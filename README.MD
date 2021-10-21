@@ -5,13 +5,13 @@ Kolejne laboratoria są oznaczone jako tagi w repozytorium.
 
 ## Laboratoria
 
- 1. [L1 Robot Indeksujacy](#l1-robot-indeksujacy)
- 2. [L2 JavaEE](#l2-javaee)
+ 1. [L1, L2 Robot Indeksujacy](#l1,-l2-robot-indeksujacy)
+ 2. [L3 JavaEE](#l3-javaee)
  3. [L3](#l3)
 
  ***
 
-## L1 Robot Indeksujacy
+## L1, L2 Robot Indeksujacy
 ### Zadanie:
 - opracowac GUI
 - Użytkownik wprowadza adres URL strony od ktorej ma się zacząć zbieranie linków.
@@ -30,7 +30,7 @@ W komponencie poniżej prezentować listę niepowtarzalnych linków.
 
 ***
 
-## L2 JavaEE 
+## L3 JavaEE 
 ### Zadanie 1:
 Stwórz serwlet, który w zależności od parametru początkowego serwletu (zdefiniowanego w pliku desktyptora wdrożenia) będzie wyświetlał w formie tabelarycznej tabliczkę mnożenia o zdefiniowanym rozmiarze. 
 dst
