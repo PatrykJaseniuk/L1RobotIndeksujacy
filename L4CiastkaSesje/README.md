@@ -1,6 +1,7 @@
-#Lista 4
+# Lista 4 Ciastka Sesje
 
-Zadanie 1.
+## Zadanie 1
+
 Uwaga – zadanie do wykonania na ciasteczkach bez użycia sesji!
 Stwórz aplikację WEB (logika ma się kryć w serwlecie), gdzie obliczona zostanie wartość iloczynu w następujący sposób:
 a) na stronie Internetowej ma się znajdować jedno pole input typu tekstowego, w które użytkownik ma możliwość wprowadzania liczby (uwaga – walidacja ma zostać przeprowadzona po stronie serwera), oraz element tekstowy prezentujący bieżącą wartość.
@@ -13,7 +14,8 @@ dst
 
 ***
 
-Zadanie 2.
+## Zadanie 2
+
 Uwaga – zadanie do wykonania na ciasteczkach lub sesji (do wyboru) 
 Stwórz prostą grę rzut kostką. Założenia:
 - użytkownik podaje wartość (1-6),
@@ -30,7 +32,8 @@ db
 
 ***
 
-Zadanie 3.
+## Zadanie 3
+
 Uwaga – zadanie do wykonania na sesji!
 Stwórz aplikację WEB (logika w serwlecie), na której w kolejnych żądaniach użytkownik podaje kolejne wartości całkowite z przedziału 0 – 10 (walidacja po stronie serwletu). Wartości z kolejnych żądań mają zostać zapamiętane w sesji. Po przyciśnięciu przycisku generuj ma zostać wygenerowany wykres słupkowy w formacie SVG, który prezentuje wartości wczytane od użytkownika (wysokość słupków ma być proporcjonalna do wartości podanych przez użytkownika z kolejnych żądań). Np. Użytkownik podając wartości 2,3,1 i przyciskając przycisk generuj ma uzyskać następujący efekt:
 
