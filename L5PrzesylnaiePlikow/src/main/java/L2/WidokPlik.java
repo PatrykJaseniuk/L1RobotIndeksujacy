@@ -9,6 +9,7 @@ import Widok.FileInpute;
 import Widok.Form;
 import Widok.Header;
 import Widok.Inpute;
+import Widok.ListaPlikow;
 import Widok.View;
 import java.util.Arrays;
 
@@ -22,6 +23,8 @@ public class WidokPlik {
     public static DataList listaFolderow;
     public static Header info;
     public static FileInpute file;
+    public static ListaPlikow listaPlikow;
+    
 
     public static void konstruowanieWidoku() {
         view = new View();
@@ -37,6 +40,9 @@ public class WidokPlik {
 
         info = new Header();
         view.add(info);
+        
+        listaPlikow= new ListaPlikow();
+        view.add(listaPlikow);
 
     }
 }

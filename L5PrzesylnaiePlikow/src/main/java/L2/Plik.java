@@ -5,9 +5,20 @@
 package L2;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -32,6 +43,7 @@ import javax.servlet.http.Part;
 public class Plik extends HttpServlet
 {
 
+    private final String lokoalizacjaFolderowZPlikami = "C:\\borys\\";
     Plik()
     {
         WidokPlik.konstruowanieWidoku();
@@ -49,7 +61,8 @@ public class Plik extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        process(request);
+        obslugaPobieraniaPlikuOdKlienta(request);
+        obslugaWysylaniaPlikuDoKlienta(request, response);
         WidokPlik.view.response(response);
     }
 
@@ -95,24 +108,15 @@ public class Plik extends HttpServlet
         return "Short description";
     }// </editor-fold>
 
-    private void process(HttpServletRequest request)
-    {
-        Part plik = WidokPlik.file.getFile(request);
-        String folder = WidokPlik.listaFolderow.getText(request);
-
-        System.out.println("folder: " + folder);
-
-        zapiszPlikNaDysku(folder, plik);
-    }
-
     private void zapiszPlikNaDysku(String folder, Part filePart)
     {
         boolean czyUdaloSieZapisac = true;
-        String fileName = filePart.getSubmittedFileName();
-        File file = new File("C:\\borys\\" + folder + "\\" + fileName);
+        
 
         try
         {
+            String fileName = filePart.getSubmittedFileName();
+        File file = new File(lokoalizacjaFolderowZPlikami+"" + folder + "\\" + fileName);            
             InputStream fileContent = filePart.getInputStream();
             Files.copy(fileContent, file.toPath());
         } catch (Exception e)
@@ -132,5 +136,83 @@ public class Plik extends HttpServlet
             odpowiedz = "udalo sie zapisac plik";
         }
         WidokPlik.info.setText(odpowiedz);
+    }
+
+    private void obslugaWysylaniaPlikuDoKlienta(HttpServletRequest request, HttpServletResponse response)
+    {
+        WidokPlik.listaPlikow.indeksowanieFolderu(lokoalizacjaFolderowZPlikami);
+        PrzesylanieWybranegoPliku(request, response);
+    }
+
+    private void obslugaPobieraniaPlikuOdKlienta(HttpServletRequest request)
+    {
+        Part plik = WidokPlik.file.getFile(request);
+        String folder = WidokPlik.listaFolderow.getText(request);
+        System.out.println("folder: " + folder);
+        zapiszPlikNaDysku(folder, plik);
+    }
+
+
+
+    private void PrzesylanieWybranegoPliku(HttpServletRequest request, HttpServletResponse response)
+    {
+        String adresPliku = WidokPlik.listaPlikow.getAdresPliku(request);
+        if(adresPliku!=null)
+        {
+            wyslijPlik(adresPliku, response);
+        }
+        
+    }
+
+
+
+    private void wyslijPlik(String filePath, HttpServletResponse response)
+    {
+        try{       
+                // reads input file from an absolute path
+        File downloadFile = new File(filePath);
+        FileInputStream inStream = new FileInputStream(downloadFile);
+         
+        // if you want to use a relative path to context root:
+        String relativePath = getServletContext().getRealPath("");
+        System.out.println("relativePath = " + relativePath);
+         
+        // obtains ServletContext
+        ServletContext context = getServletContext();
+         
+        // gets MIME type of the file
+        String mimeType = context.getMimeType(filePath);
+        if (mimeType == null) {        
+            // set to binary type if MIME mapping not found
+            mimeType = "application/octet-stream";
+        }
+        System.out.println("MIME type: " + mimeType);
+         
+        // modifies response
+        response.setContentType(mimeType);
+        response.setContentLength((int) downloadFile.length());
+         
+        // forces download
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"", downloadFile.getName());
+        response.setHeader(headerKey, headerValue);
+         
+        // obtains response's output stream
+        OutputStream outStream = response.getOutputStream();
+         
+        byte[] buffer = new byte[4096];
+        int bytesRead = -1;
+         
+        while ((bytesRead = inStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, bytesRead);
+        }
+         
+        inStream.close();
+        outStream.close();   
+        }
+        catch(Exception e)
+        {
+            
+        }
     }
 }
