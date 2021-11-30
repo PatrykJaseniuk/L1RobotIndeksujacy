@@ -1,3 +1,9 @@
+
+import Widok.Header;
+import Widok.View;
+import Widok.Form;
+import Widok.Inpute;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template

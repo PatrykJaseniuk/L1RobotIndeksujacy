@@ -1,3 +1,5 @@
+package Widok;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,14 +11,14 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author jasyn
  */
-class Inpute extends Element {
+public class Inpute extends Element {
 
     static int licznik = 0;
-    private String label;
-    private String typ;
-    private String nazwa;
+    protected String label;
+    protected String typ;
+    protected String nazwa;
 
-    Inpute(String label, String typ) {
+    public Inpute(String label, String typ) {
         this.nazwa = "input" + licznik++;
         this.label = label;
         this.typ = typ;
@@ -24,13 +26,13 @@ class Inpute extends Element {
 
     @Override
     public String getHtml() {
-        String html = "<label for=\"" + nazwa + "\">" + label + ":</label><br>\n"
+        String html = "<br><label for=\"" + nazwa + "\">" + label + ":</label><br>\n"
                 + "  <input type=\"" + typ + "\" id=\"" + nazwa + "\" name=\"" + nazwa + "\"><br>";
 
         return html;
     }
 
-    String getText(HttpServletRequest request) {
+    public String getText(HttpServletRequest request) {
         String text = request.getParameter(nazwa);
         return text;
     }

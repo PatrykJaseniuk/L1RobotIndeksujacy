@@ -1,3 +1,5 @@
+package Widok;
+
 
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jasyn
  */
-class View extends Element {
+public class View extends Element {
 
-    void response(HttpServletResponse response) {
+    public void response(HttpServletResponse response) {
         String html = getHtml();
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
