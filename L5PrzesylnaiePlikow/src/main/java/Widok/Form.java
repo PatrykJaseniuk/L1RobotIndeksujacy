@@ -19,7 +19,8 @@ public class Form extends Element {
 
     @Override
     public String getHtml() {
-        String html = "<form  method=\"post\" enctype=\"multipart/form-data\" action=\"" + action + "\">\n";
+         
+        String html = "<form method=\"post\" enctype=\"multipart/form-data\"  action=\"" + action + "\">\n";
 
         for (Element element : elementy) {
             html += element.getHtml();
@@ -28,7 +29,6 @@ public class Form extends Element {
         html
                 += "  <input type=\"submit\" value=\"Submit\">\n"
                 + "</form> ";
-
         return html;
     }
 }

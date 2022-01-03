@@ -110,8 +110,7 @@ public class Plik extends HttpServlet
 
     private void zapiszPlikNaDysku(String folder, Part filePart)
     {
-        boolean czyUdaloSieZapisac = true;
-        
+        boolean czyUdaloSieZapisac = true;       
 
         try
         {

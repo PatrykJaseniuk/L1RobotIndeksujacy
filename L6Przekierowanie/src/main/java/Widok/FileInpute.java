@@ -12,7 +12,7 @@ import javax.servlet.http.Part;
  *
  * @author jasyn
  */
-public class FileInpute extends Inpute {
+public class FileInpute extends Input {
 
     public FileInpute(String label) {
         super("plik","file");    }

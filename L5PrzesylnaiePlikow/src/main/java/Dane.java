@@ -100,10 +100,10 @@ public class Dane extends HttpServlet {
     }
 
     private String getHaslo() {
-        return "borys";
+        return "admin";
     }
 
     private String getLogin() {
-        return "andrzej";
+        return "admin";
     }
 }

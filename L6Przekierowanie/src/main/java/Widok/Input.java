@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author jasyn
  */
-public class Inpute extends Element {
+public class Input extends Element {
 
     static int licznik = 0;
     protected String label;
     protected String typ;
     protected String nazwa;
 
-    public Inpute(String label, String typ) {
+    public Input(String label, String typ) {
         this.nazwa = "input" + licznik++;
         this.label = label;
         this.typ = typ;
