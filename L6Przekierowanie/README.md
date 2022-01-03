@@ -19,4 +19,4 @@ dst
 ## Jak Kozystac
 
 W Servlecie w funkcji `private void wypelnianieMapy(Map<String, String> mapaUrl)` jest scieżka do pliku którą trzeba zmodyfikować.
-W pliku dwie kolejne linie tworzą pare linków, w każdej lini znajduję się tylko jeden link.
+W pliku dwie kolejne linie tworzą pare linków, w każdej lini znajduje się tylko jeden link.
