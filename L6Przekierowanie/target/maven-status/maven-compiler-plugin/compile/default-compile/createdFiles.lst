@@ -1,3 +1,12 @@
 Przekierowanie.class
+Widok\Element.class
+Widok\ListaPlikow.class
+Widok\Input.class
 com\mycompany\przekierowaniel6\JAXRSConfiguration.class
+Widok\FileInpute.class
+Widok\DataList.class
+Widok\Header.class
 com\mycompany\przekierowaniel6\resources\JavaEE8Resource.class
+Widok\View.class
+Gui.class
+Widok\Form.class

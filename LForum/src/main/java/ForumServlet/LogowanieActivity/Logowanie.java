@@ -4,9 +4,11 @@
  */
 package ForumServlet.LogowanieActivity;
 
-import ForumServlet.StronaGlownaActivity.StronaGlownaActivity;
+import ForumServlet.GuiWspolne.GuiRdzen;
+import ForumServlet.WynikWyszukiwaniaActivity.WynikWyszukiwaniaActivity;
 import ForumServlet.Kernel;
 import ForumServlet.LogowanieActivity.GuiLogowanie;
+import ForumServlet.RejestracjaActivity.RejestracjaActivity;
 import ForumServlet.Uzytkownik;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,9 +30,13 @@ import javax.servlet.http.HttpSession;
 public class Logowanie extends HttpServlet
 {
     
+    public static final String url = "Logowanie";
+    private GuiRdzen gui= new GuiRdzen();
+    
     Logowanie()
     {
         guiLogowanie =  new GuiLogowanie();
+        guiLogowanie.urlRejestracja=RejestracjaActivity.url;
         
         guiLogowanie.setOnLogInClick(new Runnable(){
             @Override
@@ -38,12 +44,10 @@ public class Logowanie extends HttpServlet
             {
                 String login = guiLogowanie.getLogin();
                 String haslo = guiLogowanie.getHaslo();
-                boolean czyHasloILoginPoprawne = Kernel.logIn(login,haslo);
-                if(czyHasloILoginPoprawne)
-                {
-                    HttpSession session= guiLogowanie.getSession();
-                    Uzytkownik uzytkownik= (Uzytkownik)session.getAttribute(Kernel.nazwaAtrybutuSesji);
-                    guiLogowanie.redirect(StronaGlownaActivity.url);
+                boolean czyUdaloSieZalogowac = Kernel.logIn(guiLogowanie.getSession(),login,haslo);
+                if(czyUdaloSieZalogowac)
+                {                    
+                    gui.redirect(WynikWyszukiwaniaActivity.url);
                 }
                 else
                 {
@@ -51,6 +55,7 @@ public class Logowanie extends HttpServlet
                 }                
             }            
         });
+        gui.guiSrodekStrony = guiLogowanie;
     }
 
     private GuiLogowanie guiLogowanie;
@@ -67,7 +72,8 @@ public class Logowanie extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-       guiLogowanie.process(request,response);
+       gui.process(request,response);
+//       guiLogowanie.process(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -4,6 +4,10 @@
  */
 package ForumServlet;
 
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  *
  * @author jasyn
@@ -11,17 +15,21 @@ package ForumServlet;
 public class Pytanie
 {
 
-    public String data;
+    public Date data;
     public String tytul;
     public String tresc;
     public final int id;
+    public Uzytkownik uzytkownik;
+    public List<Odpowiedz> odpowiedzi=new LinkedList<>();
 
-    Pytanie(int id, int data, String tytul, String tresc)
+    Pytanie(int id, Uzytkownik uzytkownik, Date data, String tytul, String tresc, List<Odpowiedz> odpowiedzi)
     {
         this.id = id;
-        this.data =Integer.toString(data);
+        this.data =data;
         this.tytul = tytul;
         this.tresc = tresc;
+        this.uzytkownik= uzytkownik;
+        this.odpowiedzi = odpowiedzi;
     }
     
 }
