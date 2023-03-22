@@ -16,7 +16,7 @@ https://www.google.pl/maps/place/Mercure+Warszawa+Centrum/@52.2434043,20.9997351
 
 dst
 
-## Jak Kozystac
+## Jak Korzystac
 
 W Servlecie w funkcji `private void wypelnianieMapy(Map<String, String> mapaUrl)` jest scieżka do pliku którą trzeba zmodyfikować.
 W pliku dwie kolejne linie tworzą pare linków, w każdej lini znajduje się tylko jeden link.
